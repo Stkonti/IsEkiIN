@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Eki In?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #ekiNo, #mikkoNo {
+            background-color: red;
+            color: white;
+        }
+        #ekiYes, #mikkoYes {
+            background-color: green;
+            color: white;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="question1">
+        <p>Is Eki in?</p>
+        <button id="ekiNo">NO</button>
+        <button id="ekiYes">YES</button>
+    </div>
+    <div id="question2" style="display: none;">
+        <p>But is Mikko In?</p>
+        <button id="mikkoNo">NO</button>
+        <button id="mikkoYes">YES</button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('ekiNo').addEventListener('click', function() {
+            showMikkoQuestion();
+        });
+        document.getElementById('ekiYes').addEventListener('click', function() {
+            showMikkoQuestion();
+        });
+
+        function showMikkoQuestion() {
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'block';
+        }
+
+        document.getElementById('mikkoNo').addEventListener('click', function() {
+            decideParticipation(false);
+        });
+        document.getElementById('mikkoYes').addEventListener('click', function() {
+            decideParticipation(true);
+        });
+
+        function decideParticipation(isMikkoParticipating) {
+            let amIParticipating = false;
+            let output = '';
+
+            if (isMikkoParticipating) {
+                amIParticipating = true;
+                output += 'Mikko is in. Panic avoided.<br>';
+                output += 'Decision made: I am participating too! 🎉';
+            } else {
+                output += 'No Mikko, no me. I stay home.';
+            }
+
+            document.getElementById('output').innerHTML = output;
+        }
+    </script>
+</body>
+</html>
